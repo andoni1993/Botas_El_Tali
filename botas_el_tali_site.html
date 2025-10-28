@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Botas El Tali</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8f3ed;
+      --ink: #3e2f20;
+      --leather: #a67c52;
+      --leather-dark: #8b643e;
+      --tan: #d2b48c;
+      --cream: #fffaf2;
+      --accent: #704214;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    header {
+      background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+                        url('https://images.unsplash.com/photo-1604079628040-94301bb21b9b?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 2.5rem 0 3rem;
+      position: relative;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .brand img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: .5rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+    .brand h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      letter-spacing: .5px;
+      margin: 0;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+    .tagline {
+      text-align: center;
+      margin-top: .5rem;
+      color: #fbeed8;
+    }
+    section { animation: fadeInUp .9s ease; }
+    .about { text-align: center; padding: 1.5rem 0 0; }
+    .about p { font-size: 1.08rem; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--tan);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform .25s ease;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card h3 {
+      margin: .25rem 0 .5rem;
+      color: var(--accent);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+    }
+    .map-link, .primary-btn {
+      display: inline-block;
+      margin-top: .6rem;
+      padding: .7rem 1.1rem;
+      background-color: var(--leather);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: background .2s ease, transform .1s ease;
+    }
+    .map-link:hover, .primary-btn:hover { background-color: var(--leather-dark); }
+    .map-link:active, .primary-btn:active { transform: translateY(1px); }
+
+    /* --- Gallery --- */
+    .gallery { margin-top: 1.75rem; text-align: center; }
+    .gallery h2 {
+      margin-bottom: .75rem;
+      color: var(--accent);
+      font-family: 'DM Serif Display', serif;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: .9rem;
+      padding: .5rem 0 1rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      border: 1px solid #d2b48c;
+      object-fit: cover;
+    }
+    .gallery-grid img:before {
+      content: attr(alt);
+      display: block;
+      color: #6e5a47;
+      background: #e8ded1;
+      border: 2px dashed #b79b7e;
+      border-radius: 12px;
+      padding: 2rem;
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #3a2b1f;
+      color: #fff;
+      text-align: center;
+      padding: 1.25rem .75rem 4.5rem;
+      margin-top: 2rem;
+      letter-spacing: 0.3px;
+    }
+
+    .action-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid #e5d7c7;
+      box-shadow: 0 -4px 18px rgba(0,0,0,0.08);
+      padding: .6rem .7rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .6rem;
+      z-index: 10;
+    }
+    .action-btn {
+      text-align: center;
+      padding: .65rem .4rem;
+      border-radius: 12px;
+      background: var(--leather);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      font-size: .95rem;
+    }
+    .action-btn:hover { background: var(--leather-dark); }
+
+    .top-cta {
+      display: none;
+      gap: .6rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .top-cta a {
+      padding: .55rem .9rem;
+      border-radius: 10px;
+      background: var(--cream);
+      border: 1px solid var(--tan);
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    @media (min-width: 860px) {
+      .action-bar { display: none; }
+      footer { padding-bottom: 1.25rem; }
+      .top-cta { display: flex; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <img src="https://i.ibb.co/Z4WKxv0/botas-el-tali.jpg" alt="Botas El Tali logo" onerror="this.style.display='none';"/>
+        <h1>Botas El Tali</h1>
+      </div>
+      <p class="tagline">Quality boots, belts, hats & leather goods — Texas style 🤠</p>
+      <div class="top-cta">
+        <a href="tel:+17145485573">Call Blanca (English)</a>
+        <a href="tel:+17146766723">Call Tali (Español)</a>
+        <a href="mailto:info@botaseltali.com">Email Us</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="about">
+      <p>
+        Welcome to <strong>Botas El Tali</strong> — your weekend stop for authentic western wear.
+        We’re a family-run stand with boots, belts, sombreros, cowboy hats, and leather goods.
+        Come by, say hello, and find your perfect fit.
+      </p>
+    </section>
+
+    <section>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Saturday — Atascosa Livestock Exchange</h3>
+          <p>2002 TX-97, Pleasanton, TX 78109</p>
+          <a class="map-link" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/place/Atascosa+Livestock+Exchange/@28.957725,-98.5023023,17z">
+            📍 Get Directions
+          </a>
+        </div>
+        <div class="card">
+          <h3>Sunday — Las Esperanzas Flea Market</h3>
+          <p>18820 Pleasanton Rd, San Antonio, TX 78221</p>
+          <a class="map-link" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/place/Las+Esperanzas+Flea+Market/@29.252065,-98.527597,17z">
+            📍 Get Directions
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <h2>Our Products</h2>
+      <div class="gallery-grid">
+        <img src="https://i.ibb.co/8D5tx58p/holders.jpg" alt="Hand-tooled leather phone holders" onerror="this.src='';this.style.background='#e8ded1';this.style.border='2px dashed #b79b7e';this.style.borderRadius='12px';this.style.padding='2rem';this.alt='Image not found';" />
+        <img src="https://i.ibb.co/kgVPHg3w/buckles.jpg" alt="Western belt buckles" onerror="this.src='';this.style.background='#e8ded1';this.style.border='2px dashed #b79b7e';this.style.borderRadius='12px';this.style.padding='2rem';this.alt='Image not found';" />
+        <img src="https://i.ibb.co/R4prrCS5/hat.jpg" alt="Cowboy hat with leather trim" onerror="this.src='';this.style.background='#e8ded1';this.style.border='2px dashed #b79b7e';this.style.borderRadius='12px';this.style.padding='2rem';this.alt='Image not found';" />
+        <img src="https://i.ibb.co/jk7T57Lk/boots.jpg" alt="Texas flag cowboy boots" onerror="this.src='';this.style.background='#e8ded1';this.style.border='2px dashed #b79b7e';this.style.borderRadius='12px';this.style.padding='2rem';this.alt='Image not found';" />
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Botas El Tali • Follow us on Instagram @botaseltali • info@botaseltali.com
+  </footer>
+
+  <!-- Mobile action bar -->
+  <nav class="action-bar">
+    <a class="action-btn" href="tel:+17145485573">Blanca</a>
+    <a class="action-btn" href="tel:+17146766723">Eddy</a>
+    <a class="action-btn" href="mailto:info@botaseltali.com">Email</a>
+  </nav>
+</body>
+</html>
